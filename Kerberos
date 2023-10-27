@@ -28,8 +28,71 @@ $ 1.nano /etc/krb5.conf ===> Dont do any thing in this file
 $ 1.sudo nano /usr/share/doc/krb5-kdc/examples/kdc.conf ===> in this file Uncomment - supported enryption type ===> remove the # sing only
 $ 2.sudo /etc/init.d/krb5-admin-server restart
 $ 3.sudo kadmin.local ===> in this addprinc command ===> addprinc cm/admin ==> give password ===> then addprinc cm/admin ==> then new password enter password ===> then exit
-$ 4.
+$ 4.sudo nano /etc/krb5kdc/kadm5.acl ===> come at the last then past this line ===> cm/admin@HADOOP.COM *
+$ 5.sudo /etc/init.d/krb5-admin-server restart
 
+> This following already done
+sudo kadmin.local
+ addprinc user1 
+
+## Intall kerberos clients
+$ 1.sudo apt-get install krb5-user -y ===> in default kerberos give HADOOP.COM then ok ===> then copy past the private dns of CM instance ===> copy past the CM private ip
+$ 2.kinit -p usera ===> give password of principal
+$ 3.klinst
+> Open 4 terminal at a time
+#connect to the instance copy past the public_ip other than CM and worker instance one by one in all terminal
+$ 1.ssh -i nick.pem ubuntu@public_ip 
+
+## Intall kerberos clients on all 4 terminals
+$ 1.sudo apt-get install krb5-user -y ===> on all terminals
+then 1.HADOOP.COM ===> then ok then copy past the CM instance private_dns on all 4 terminals then CM private_dns then ok
+$ 2.kinit -p usera
+$ 3.klist
+$ 4.kdestroy
+
+> Go in cloudera manager 
+1.adminstration ==> secuirty then click on enable kerberos ===> then MIT KDC ==> tick on i have completed
+2.KDC server Host ===> copy past the private_dns of CM instance 
+ KDC admin server Host ===> past the private_dns of CM instance 
+max renewable make it 7 
+3.Kerberos Encryption types ==> set to aes256-cts click on continue
+then on next page keep as it is
+4.Enter Account Credentials ==> Username ===> cm/admin 
+password then click on continue
+5.command details wait after done click on continue
+6.configure kerberos ===> click on continue
+7.command details wait after done click continue
+
+
+> Come to terminal 
+$ 1.kdestroy
+$ 2.klist
+$ 3.hdfs dfs -mkdir /abc
+$ 4.export HADOOP_USER_NAME=hdfs
+$ 5.hdfs dfs -mkdir /abc
+$ 6.su hdfs 
+$ 7.cd
+$ 8.hdfs dfs -mkdir /abc
+$ 9.exit
+
+> Go in kdc terminal
+$ 1.sudo kadmin.local ===> addprinc hdfs then password  then exit
+$ 2.su hdfs 
+$ 3.cd
+$ 4.kinit -p hdfs 
+$ 5.klist
+$ 6.hdfs dfs -ls /
+
+## Kerberos Commands
+
+-> Adding principal
+addprinc prinname
+
+-> Deleting Principal
+delprinc princname
+
+-> Listing all principals
+listprincs
 
 
 ## Install kerberos KDC and Admin server
