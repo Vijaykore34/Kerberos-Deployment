@@ -1,0 +1,35 @@
+                                  #### Kerberos Deployment ###
+
+                                 ##############################################
+                                           Kerberos Installation CDP
+                                ##############################################
+
+>Create the instance like cloudera instance 6 clusters
+$ 1.connect to the instance worker ==> ssh -i nick.pem ubuntu@public_ip
+$ 2.sudo nano /etc/passwd ===> search for hdfs then change from /usr/sbin/nologin ===> to /bin/bash
+$ 3.sudo passwd hdfs 
+$ 4.hdfs dfs -mkdir /data
+$ 5.go in cloudera hdfs configuration dfs.permissions it should be ticked on hdfs (service wide)
+$ 6.export HADOOP_USER_NAME=hdfs
+$ 7.hdfs dfs -mkdir /data
+
+> Open another terminal 
+$ 1.connect to CM instance ===> ssh -i nick.pem ubuntu@public_ip 
+$ 2.sudo apt-get install -y rng-tools
+$ 3.sudo apt install krb5-kdc krb5-admin-server
+$ 4.it will open pink screen type realm in it ===> HADOOP.COM press ok ===> then copy the privarte dns of instance name CM press ok then ===> for adminserver copy CM instace private dns and past
+then ok and ok
+$ 5.sudo krb5_newrealm
+
+## Check the krb5.conf
+$ 1.nano /etc/krb5.conf ===> Dont do any thing in this file
+
+## Check kdc.conf for kdc configurations
+$ 1.sudo nano /usr/share/doc/krb5-kdc/examples/kdc.conf ===> in this file Uncomment - supported enryption type ===> remove the # sing only
+$ 2.sudo /etc/init.d/krb5-admin-server restart
+$ 3.sudo kadmin.local ===> in this addprinc command ===> addprinc cm/admin ==> give password ===> then addprinc cm/admin ==> then new password enter password ===> then exit
+$ 4.
+
+
+
+## Install kerberos KDC and Admin server
