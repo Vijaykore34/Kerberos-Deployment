@@ -96,3 +96,38 @@ listprincs
 
 
 ## Install kerberos KDC and Admin server
+
+
+
+
+
+
+
+
+
+> In The next video of Authorization 
+In other than KDS instance
+$ 1.sudo useradd usera
+
+In KDC instance
+$ 1.sudo kadmin.local==> addprinc usera ==> give password then exit
+
+in previous terminal
+$ 1.su hdfs 
+$ 2.cd
+$ 3.kinit -p usera
+$ 4.kdestroy
+$ 5.kinit -p hdfs
+$ 6.hdfs dfs -mkdir /user/usera
+$ 7.hdfs dfs -ls /user
+$ 8.hdfs dfs -chown usera:usera /user/usera
+$ 9.hdfs dfs -ls /user
+$ 10.hdfs dfs -chmod 660 /user/usera
+$ 11.hdfs dfs -ls /user
+> Go in cloudera manager hdfs ===> upper list config  search acl
+
+
+
+
+
+
