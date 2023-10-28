@@ -1,0 +1,24 @@
+
+
+> Go in cloudera manager ==> in the list click on Ranger ===> then Ranger admin webUI ==> compare the last 4 digit of search bar with instance and copy the public_ip and past there
+2.Login to ranger with username : admin password : admin
+3.in cloudera go in Hue ===> Web UI ==> check the digit copy past the public_ip of that instance name it as Hue
+4.login with admin admin password 
+5.go in bottom admin ===> manager users ===> adduser ===> username : Hive
+6.Next first name and last name leave as it is 
+7.tick on Active and super user 
+8.click on adduser
+9.in bottom logout
+10.sign in using username:Hive and password which is given
+11.
+
+
+                                                       **********************************************
+                                                                   Apache Ranger
+                                                       **********************************************
+
+>  tables click on plus botton 
+2.type select file and path /user/hive
+3.upload files 1.customer 
+
+ 
