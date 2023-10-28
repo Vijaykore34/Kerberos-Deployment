@@ -1,0 +1,36 @@
+
+
+               ******** Authorisation CDP ********
+
+
+              #############################
+                     Authorization
+              #############################
+
+> kerberos script terminal
+$ 1.hdfs dfs -mkdir -p /data/userc
+$ 2.exit
+$ 3.sudo useradd userc
+$ 4.sudo useradd usera
+$ 5.sudo addgroup dev
+$ 6.sudo addgroup testers
+$ 7.su hdfs
+$ 8.cd
+$ 9.hdfs dfs -chown userc:dev /data/userc
+$ 10.hdfs dfs -ls /data
+$ 11.hdfs dfs -getfacl /data/userc
+$ 12.hdfs dfs -setfacl -m user:usera:r-x /data/userc
+$ 13.hdfs dfs -setfacl -m group:testers:rwd /data/userc
+$ 14.hdfs dfs -getfacl /data/userc
+$ 15.hdfs dfs -ls /data
+$ 16.hdfs dfs -getfacl /data/userc
+$ 17.hdfs dfs -chmod 750 /data/userc
+$ 18.hdfs dfs -getfacl /data/userc  ===> chmod is dominant over acl
+$ 19.hdfs dfs -setfacl -b /data/userc
+$ 20.hdfs dfs -getfacl /data/userc
+$ 21.hdfs dfs -ls /data
+$ 22.hdfs dfs -chmod +t /data
+$ 23.hdfs dfs -ls /
+$ 24.hdfs dfs -ls /user
+
+
